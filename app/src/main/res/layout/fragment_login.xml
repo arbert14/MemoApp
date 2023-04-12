@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="loginFragment"
+            type="com.example.practicememoapp.ui.view.LoginFragment" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/memo_icon_iv"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="200dp"
+            android:src="@drawable/memo_icon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:layout_width="320dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="12dp"
+            android:textSize="18dp"
+            app:layout_constraintTop_toBottomOf="@+id/memo_icon_iv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:hint="아이디"
+            android:id="@+id/id_et"
+            android:paddingStart="12dp"
+            android:background="@drawable/custom_radius8_solidffffff_stroke000000"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:textSize="18dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintTop_toBottomOf="@+id/id_et"
+            app:layout_constraintStart_toStartOf="@id/id_et"
+            app:layout_constraintEnd_toEndOf="@id/id_et"
+            android:paddingStart="12dp"
+            android:hint="비밀번호"
+            android:id="@+id/pw_et"
+            android:background="@drawable/custom_radius8_solidffffff_stroke000000"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            app:layout_constraintStart_toStartOf="@+id/id_et"
+            app:layout_constraintEnd_toEndOf="@id/id_et"
+            app:layout_constraintTop_toBottomOf="@+id/pw_et"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/custom_radius8_solid000000"
+            android:textColor="#ffffff"
+            android:text="로그인"
+            android:onClick="@{() -> loginFragment.onClickedLoginBtn()}"
+            android:textSize="20dp"
+            android:id="@+id/login_btn"
+            android:textStyle="bold"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

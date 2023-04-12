@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="추가"
+        android:enabled="true"
+        android:id="@+id/menu_insert"/>
+    <item android:title="조회"
+        android:enabled="true"
+        android:id="@+id/menu_select"/>
+    <item android:title="수정"
+        android:enabled="true"
+        android:id="@+id/menu_edit"/>
+</menu>
