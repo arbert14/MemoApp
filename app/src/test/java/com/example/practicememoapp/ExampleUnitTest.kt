@@ -1,5 +1,6 @@
 package com.example.practicememoapp
 
+import io.kotest.core.spec.style.StringSpec
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -9,7 +10,7 @@ import org.junit.Assert.*
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class ExampleUnitTest: StringSpec() {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)

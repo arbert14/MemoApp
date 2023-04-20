@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.practicememoapp.data.entites.Memo
 import com.example.practicememoapp.databinding.ItemMemoBinding
 
-class MemoAdapter: ListAdapter<Memo, MemoAdapter.MemoViewHolder>(diffUtil) {
+class MemoAdapter(private val onClickedMemo: (Memo) -> Unit): ListAdapter<Memo, MemoAdapter.MemoViewHolder>(diffUtil) {
+
+
     companion object {
         val diffUtil = object : DiffUtil.ItemCallback<Memo>() {
             override fun areItemsTheSame(oldItem: Memo, newItem: Memo): Boolean {
@@ -25,6 +27,10 @@ class MemoAdapter: ListAdapter<Memo, MemoAdapter.MemoViewHolder>(diffUtil) {
         fun onBind(memo: Memo) {
             binding.titleTv.text = memo.memoTitle
             binding.contentTv.text = memo.memoContent
+
+            itemView.setOnClickListener {
+                onClickedMemo(memo)
+            }
         }
     }
 

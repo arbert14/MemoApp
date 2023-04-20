@@ -37,12 +37,21 @@ android {
     dataBinding {
         enabled = true
     }
+}
 
+android.testOptions {
+    unitTests.all {
+        useJUnitPlatform()
+    }
 }
 
 dependencies {
     def lifecycle_version = "2.6.1"
     def room_version = "2.5.0"
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    testImplementation 'io.kotest:kotest-runner-junit5:5.0.3'
 
     // room
     implementation("androidx.room:room-runtime:$room_version")

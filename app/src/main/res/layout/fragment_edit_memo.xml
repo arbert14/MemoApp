@@ -1,14 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.view.EditMemoFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.view.InsertMemoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+        <variable
+            name="editMemoFragment"
+            type="com.example.practicememoapp.ui.view.EditMemoFragment" />
+        <variable
+            name="memoViewModel"
+            type="com.example.practicememoapp.ui.viewmodel.MemoViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="제목"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/title_tv"
+            android:layout_marginStart="16dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:textSize="18dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="4dp"
+            android:text="@{memoViewModel.editMemo.memoTitle}"
+            app:layout_constraintStart_toStartOf="@id/title_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_tv"
+            android:layout_marginEnd="16dp"
+            android:hint="제목을 입력하세요"
+            android:paddingStart="8dp"
+            android:background="@null"
+            android:id="@+id/title_et"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="내용"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_et"
+            android:id="@+id/content_tv"
+            android:layout_marginStart="16dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:textSize="18dp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/save_btn"
+            android:layout_marginBottom="20dp"
+            android:maxLength="120"
+            android:gravity="left|top"
+            android:text="@{memoViewModel.editMemo.memoContent}"
+            android:paddingTop="4dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="@id/title_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/content_tv"
+            android:layout_marginEnd="16dp"
+            android:hint="내용을 입력하세요"
+            android:paddingStart="8dp"
+            android:background="@null"
+            android:id="@+id/content_et"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="100dp"
+            android:layout_height="60dp"
+            android:text="저장"
+            android:onClick="@{() -> editMemoFragment.onClickedSaveBtn()}"
+            android:id="@+id/save_btn"
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

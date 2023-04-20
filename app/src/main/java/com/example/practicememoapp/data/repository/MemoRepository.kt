@@ -18,4 +18,10 @@ class MemoRepository @Inject constructor(private val memoDao: MemoDao) {
             memoDao.insertMemo(memo)
         }
     }
+
+    suspend fun updateMemo(memo: Memo) {
+        return withContext(Dispatchers.IO){
+            memoDao.updateMemo(memo)
+        }
+    }
 }

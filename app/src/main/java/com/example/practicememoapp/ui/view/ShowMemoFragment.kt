@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.practicememoapp.R
 import com.example.practicememoapp.data.entites.Memo
 import com.example.practicememoapp.databinding.FragmentShowMemoBinding
+import com.example.practicememoapp.ui.MainActivity
 import com.example.practicememoapp.ui.MemoAdapter
 import com.example.practicememoapp.ui.viewmodel.LoginViewModel
 import com.example.practicememoapp.ui.viewmodel.MemoViewModel
@@ -24,13 +25,20 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ShowMemoFragment : Fragment() {
-    @Inject lateinit var memoAdapter : MemoAdapter
+class ShowMemoFragment : Fragment(), MainActivity.OnBackPressedListener {
+    lateinit var memoAdapter : MemoAdapter
+    private val activity: MainActivity by lazy {
+        requireActivity() as MainActivity
+    }
     private val memoViewModel: MemoViewModel by viewModels()
     private val loginViewModel: LoginViewModel by viewModels()
     private var _binding: FragmentShowMemoBinding? = null
     private val binding: FragmentShowMemoBinding
         get() = _binding!!
+
+    override fun onBackPressed() {
+        requireActivity().finish()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +57,11 @@ class ShowMemoFragment : Fragment() {
     }
 
     private fun setUpMemoRecyclerView() {
+        memoAdapter = MemoAdapter() {
+            memoViewModel.setEditMemo(it)
+            activity.onReplaceFragment(EditMemoFragment())
+        }
+
         binding.memoRv.apply {
             setHasFixedSize(true)
             this.adapter = memoAdapter
@@ -69,21 +82,8 @@ class ShowMemoFragment : Fragment() {
     }
 
     // 메모 추가
-    fun insertMemo() {
-        lifecycleScope.launch {
-            withContext(Dispatchers.IO) {
-                memoViewModel.insertMemo(
-                    Memo(
-                        0,
-                        loginViewModel.getLoginId(),
-                        "memo",
-                        "memo"
-                    )
-                )
-            }
-
-            selectMemoList()
-        }
+    fun onClickedInsertBtn() {
+        activity.onReplaceFragment(InsertMemoFragment())
     }
 
     override fun onDestroyView() {
